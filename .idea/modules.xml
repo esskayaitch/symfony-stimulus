@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Symfony-stimulus.iml" filepath="$PROJECT_DIR$/.idea/Symfony-stimulus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/symfony-stimulus.iml" filepath="$PROJECT_DIR$/.idea/symfony-stimulus.iml" />
     </modules>
   </component>
 </project>
