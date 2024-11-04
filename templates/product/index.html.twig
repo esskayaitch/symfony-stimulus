@@ -8,8 +8,15 @@
       </aside>
 
       <div class="col-xs-12 col-9">
-
         <div data-controller="counter">
+          
+          <button
+              data-action="click->counter#increment"
+              class="btn btn-primary btn-sm"
+          >
+            click me!
+          </button>
+          <br>
           I have been clicked
           <span data-counter-target="count">0</span>
           times.
