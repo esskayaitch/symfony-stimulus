@@ -1,8 +1,6 @@
 import {Controller} from 'stimulus';
 
 export default class extends Controller {
-  selectedColorId = null;
-  
   static targets = ['colorSquare', 'select']
   static values = {
     colorId: Number
@@ -12,34 +10,23 @@ export default class extends Controller {
     this.selectTarget.classList.add('d-none');
   }
   
+  // Set select value in HTML to ID of the color clicked
   selectColor(event) {
-    this.setSelectedColor(event.currentTarget.dataset.colorId)
+    const clickedColor = event.currentTarget.dataset.colorId;
+    this.colorIdValue = clickedColor == this.colorIdValue ? null : clickedColor;
   }
   
-  setSelectedColor(newColorId) {
-    if (newColorId === this.selectedColorId) {
-      this.findSelectedColorSquare().classList.remove('selected');
-      
-      this.selectedColorId = null;
-      this.selectTarget.value = '';
-      
-      return;
-    }
-    
-    this.selectedColorId = newColorId;
+  // Callback function when color changes
+  // - special Stimulus Bundle method name...
+  colorIdValueChanged() {
+    this.selectTarget.value = this.colorIdValue;
     
     this.colorSquareTargets.forEach((element) => {
-      element.classList.remove('selected');
+      if (element.dataset.colorId == this.colorIdValue) {
+        element.classList.add('selected');
+      } else {
+        element.classList.remove('selected');
+      }
     });
-    
-    this.findSelectedColorSquare().classList.add('selected');
-    this.selectTarget.value = this.selectedColorId;
-  }
-  
-  /**
-   * @return {Element|null}
-   */
-  findSelectedColorSquare() {
-    return this.colorSquareTargets.find((element) => element.dataset.colorId === this.selectedColorId);
   }
 }
