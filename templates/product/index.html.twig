@@ -8,20 +8,6 @@
       </aside>
 
       <div class="col-xs-12 col-9">
-        <div data-controller="counter">
-          
-          <button
-              data-action="click->counter#increment"
-              class="btn btn-primary btn-sm"
-          >
-            click me!
-          </button>
-          <br>
-          I have been clicked
-          <span data-counter-target="count">0</span>
-          times.
-        </div>
-
         <div class="row">
           <div class="col-3">
             <h1>
@@ -34,14 +20,25 @@
           </div>
           <div class="col-9">
             <form>
-              <div class="input-group">
+              <div
+                  class="input-group"
+                  {{ stimulus_controller('search-preview', {
+                    url: path('app_homepage')
+                  }) }}
+              >
                 <input
                     name="q"
                     value="{{ searchTerm }}"
                     placeholder="Search products..."
                     type="search"
                     class="form-control"
+                    data-action="search-preview#onSearchInput"
                 >
+                <div
+                    class="search-preview"
+                    data-search-preview-target="result"
+                >
+                </div>
               </div>
             </form>
           </div>
