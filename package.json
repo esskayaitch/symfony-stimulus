@@ -17,6 +17,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "bootstrap": "^4.6.2"
+        "bootstrap": "^4.6.2",
+        "stimulus-use": "^0.52.2"
     }
 }
