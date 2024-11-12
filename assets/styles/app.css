@@ -6,7 +6,7 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-a, a:hover  {
+a, a:hover {
     color: #000;
 }
 
@@ -53,6 +53,7 @@ h1 {
 .component-light ul li a:hover {
     background: #add8e6;
 }
+
 .component-light ul li a.selected {
     background: #efefee;
 }
@@ -74,21 +75,30 @@ h1 {
 .product-image h3 {
     font-size: 1.2rem;
 }
+
 .product-show img {
-    max-width:100%;
-    max-height:100%;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .cart-add-controls input {
     width: 80px;
 }
+
 .cart-add-controls select {
     max-width: 190px;
 }
 
+
 .cart .cart-item {
     border-bottom: 1px solid #efefee;
+    transition: opacity 500ms;
 }
+
+.cart .cart-item.removing {
+    opacity: 0;
+}
+
 
 .color-square {
     display: inline-block;
@@ -98,6 +108,7 @@ h1 {
     border: 2px solid transparent;
     transition: border-color 500ms linear;
 }
+
 .color-square.selected {
     border: 2px solid black
 }
@@ -112,6 +123,7 @@ h1 {
     width: 100%;
     top: 44px;
 }
+
 .search-preview img {
     width: 50px;
 }
