@@ -20,11 +20,13 @@
   "scripts": {
     "dev-server": "encore dev-server",
     "dev": "encore dev",
-    "watch": "encore dev --watch",
-    "build": "encore production --progress"
+    "watch": "encore prod --watch",
+    "build": "encore production --progress",
+    "analyze": "webpack-bundle-analyzer stats.json public/build"
   },
   "dependencies": {
-    "bootstrap": "5.0.0",
+    "bootstrap": "^5.3.3",
+    "jquery": "^3.7.1",
     "stimulus-use": "^0.52.2",
     "sweetalert2": "^11.14.5"
   }

@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Entity;
+  namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+  use Doctrine\Common\Collections\ArrayCollection;
+  use Doctrine\Common\Collections\Collection;
+  use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
- */
-class Category
-{
+  /**
+   * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
+   */
+  class Category
+  {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -30,24 +30,24 @@ class Category
 
     public function __construct()
     {
-        $this->products = new ArrayCollection();
+      $this->products = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
-        return $this->id;
+      return $this->id;
     }
 
     public function getName(): ?string
     {
-        return $this->name;
+      return $this->name;
     }
 
     public function setName(string $name): self
     {
-        $this->name = $name;
+      $this->name = $name;
 
-        return $this;
+      return $this;
     }
 
     /**
@@ -55,29 +55,34 @@ class Category
      */
     public function getProducts(): Collection
     {
-        return $this->products;
+      return $this->products;
     }
 
     public function addProduct(Product $product): self
     {
-        if (!$this->products->contains($product)) {
-            $this->products[] = $product;
-            $product->setCategory($this);
-        }
+      if (!$this->products->contains($product)) {
+        $this->products[] = $product;
+        $product->setCategory($this);
+      }
 
-        return $this;
+      return $this;
     }
 
     public function removeProduct(Product $product): self
     {
-        if ($this->products->contains($product)) {
-            $this->products->removeElement($product);
-            // set the owning side to null (unless already changed)
-            if ($product->getCategory() === $this) {
-                $product->setCategory(null);
-            }
+      if ($this->products->contains($product)) {
+        $this->products->removeElement($product);
+        // set the owning side to null (unless already changed)
+        if ($product->getCategory() === $this) {
+          $product->setCategory(null);
         }
+      }
 
-        return $this;
+      return $this;
     }
-}
+
+    public function __toString()
+    {
+      return (string) $this->name;
+    }
+  }
