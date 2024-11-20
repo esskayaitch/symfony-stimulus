@@ -1,6 +1,5 @@
 import {Controller} from '@hotwired/stimulus'
 import Swal from 'sweetalert2'
-import {useDispatch} from 'stimulus-use'
 
 
 /* stimulusFetch: 'lazy' */
@@ -12,11 +11,6 @@ export default class extends Controller {
     icon: String,
     confirmButtonText: String,
     submitAsync: Boolean
-  }
-  
-  
-  connect() {
-    useDispatch(this)
   }
   
   
@@ -50,10 +44,7 @@ export default class extends Controller {
       body: new URLSearchParams(new FormData(this.element))
     });
     
-    this.dispatch('async:submitted', {
-      response,
-      // detail: {quantity: 1}
-    });
+    this.dispatch('async:submitted');
     
   }
   

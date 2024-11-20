@@ -11,19 +11,23 @@
     </div>
     <div class="col-3"></div>
   </div>
+
   {% for item in cart.items %}
+
     <div
-        data-action="submit-confirm:async:submitted->cart-list#removeItem"
+        data-action="submit-confirm:async:submitted->reload-content#refreshContent"
         class="cart-item row p-3"
     >
       <div class="col-2">
         {{ item.product.name }}
       </div>
       <div class="col-1">
+
         {% if item.color %}
           <span class="color-square"
                 style="background-color: rgb({{ item.color.red }}, {{ item.color.green }}, {{ item.color.blue }});"></span>
         {% endif %}
+
       </div>
       <div class="col-3">
         {{ item.quantity }}
@@ -70,6 +74,7 @@
       Total: <strong>{{ cart.totalString|format_currency('USD') }}</strong>
     </div>
   {% endif %}
+
 </div>
 
 {% if cart.items|length > 0 %}

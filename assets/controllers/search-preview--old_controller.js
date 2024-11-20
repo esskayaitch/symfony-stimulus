@@ -1,5 +1,5 @@
 import {Controller} from '@hotwired/stimulus';
-import {useClickOutside, useDebounce} from 'stimulus-use';
+import {useClickOutside, useDebounce, useTransition} from 'stimulus-use';
 
 export default class extends Controller {
   static values = {
@@ -10,7 +10,17 @@ export default class extends Controller {
   
   connect() {
     useClickOutside(this);
-    useDebounce(this, {wait: 400});
+    useDebounce(this);
+    useTransition(this, {
+      element: this.resultTarget,
+      enterActive: 'fade-enter-active',
+      enterFrom: 'fade-enter-from',
+      enterTo: 'fade-enter-to',
+      leaveActive: 'fade-leave-active',
+      leaveFrom: 'fade-leave-from',
+      leaveTo: 'fade-leave-to',
+      hiddenClass: 'd-none',
+    });
   }
   
   onSearchInput(event) {
@@ -25,9 +35,11 @@ export default class extends Controller {
     const response = await fetch(`${this.urlValue}?${params.toString()}`);
     
     this.resultTarget.innerHTML = await response.text();
+    
+    this.enter();
   }
   
   clickOutside(event) {
-    this.resultTarget.innerHTML = '';
+    this.leave();
   }
 }
